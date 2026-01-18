@@ -8,22 +8,15 @@ export default function Home() {
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
 
-  const generateRecipes = () => {
-    const fakeRecipe: Recipe = {
-      id: "1",
-      name: "Simple Omelette",
-      ingredientsUsed: ingredients.map((i) => ({ name: i })),
-      missingIngredients: [],
-      steps: [
-        "Crack the eggs into a bowl",
-        "Whisk well",
-        "Cook on a pan until done",
-      ],
-      cookingTimeMinutes: 10,
-      caloriesEstimate: 250,
-    };
+  const generateRecipes = async () => {
+    const res = await fetch("/api/recipes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ingredients }),
+    });
 
-    setRecipes([fakeRecipe]);
+    const data = await res.json();
+    setRecipes(data);
   };
 
   return (
