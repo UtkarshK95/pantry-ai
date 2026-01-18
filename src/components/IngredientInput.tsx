@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 
-export default function IngredientInput() {
+type Props = {
+  onChange: (ingredients: string[]) => void;
+};
+
+export default function IngredientInput({ onChange }: Props) {
   const [input, setInput] = useState("");
   const [ingredients, setIngredients] = useState<string[]>([]);
 
@@ -10,7 +14,10 @@ export default function IngredientInput() {
     const value = input.trim();
     if (!value) return;
 
-    setIngredients((prev) => [...prev, value]);
+    const updated = [...ingredients, value];
+    setIngredients(updated);
+    onChange(updated);
+
     setInput("");
   };
 
