@@ -8,16 +8,16 @@ The project is built web-first and is designed to scale to desktop (Electron) an
 
 ## Features (MVP)
 
-* Input a list of available ingredients
-* Generate recipes using AI (Gemini)
-* Structured recipe output:
+- Input a list of available ingredients
+- Generate recipes using AI (Gemini)
+- Structured recipe output:
+  - Recipe name
+  - Ingredients used
+  - Missing ingredients (if any)
+  - Step-by-step instructions
+  - Cooking time and calorie estimate
 
-  * Recipe name
-  * Ingredients used
-  * Missing ingredients (if any)
-  * Step-by-step instructions
-  * Cooking time and calorie estimate
-* Clean, responsive UI
+- Clean, responsive UI
 
 ---
 
@@ -25,16 +25,16 @@ The project is built web-first and is designed to scale to desktop (Electron) an
 
 ### Current
 
-* **Next.js (React)**
-* **TypeScript**
-* **Gemini API**
-* **Node.js**
+- **Next.js (React)**
+- **TypeScript**
+- **Gemini API**
+- **Node.js**
 
 ### Planned
 
-* **Electron** (Desktop app)
-* **React Native (Expo)** (Mobile app)
-* Shared logic via monorepo architecture
+- **Electron** (Desktop app)
+- **React Native (Expo)** (Mobile app)
+- Shared logic via monorepo architecture
 
 ---
 
@@ -50,9 +50,9 @@ Gemini API
 
 AI calls are handled server-side to ensure:
 
-* API key security
-* Prompt control
-* Consistent output format
+- API key security
+- Prompt control
+- Consistent output format
 
 ---
 
@@ -60,9 +60,9 @@ AI calls are handled server-side to ensure:
 
 ### Prerequisites
 
-* Node.js (18+ recommended)
-* npm / pnpm / yarn
-* Gemini API key
+- Node.js (18+ recommended)
+- npm / pnpm / yarn
+- Gemini API key
 
 ### Installation
 
@@ -96,9 +96,9 @@ This project is currently in **active development**.
 
 Initial focus:
 
-* Web MVP
-* Stable AI output format
-* Clean separation of UI and logic
+- Web MVP
+- Stable AI output format
+- Clean separation of UI and logic
 
 Desktop and mobile apps will be added after the web version stabilizes.
 
@@ -106,12 +106,12 @@ Desktop and mobile apps will be added after the web version stabilizes.
 
 ## Roadmap (High Level)
 
-* [ ] Ingredient input UI
-* [ ] Gemini integration
-* [ ] Structured recipe schema
-* [ ] Result caching
-* [ ] Electron desktop app
-* [ ] React Native mobile app
+- [ ] Ingredient input UI
+- [ ] Gemini integration
+- [ ] Structured recipe schema
+- [ ] Result caching
+- [ ] Electron desktop app
+- [ ] React Native mobile app
 
 ---
 
