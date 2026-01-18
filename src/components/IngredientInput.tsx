@@ -11,15 +11,20 @@ export default function IngredientInput({ onChange }: Props) {
   const [ingredients, setIngredients] = useState<string[]>([]);
 
   const addIngredient = () => {
-    const value = input.trim();
-    if (!value) return;
+  const value = input.trim().toLowerCase();
+  if (!value) return;
 
-    const updated = [...ingredients, value];
-    setIngredients(updated);
-    onChange(updated);
-
+  if (ingredients.includes(value)) {
     setInput("");
-  };
+    return;
+  }
+
+  const updated = [...ingredients, value];
+  setIngredients(updated);
+  onChange(updated);
+  setInput("");
+};
+
 
   return (
     <div style={{ maxWidth: 400 }}>
