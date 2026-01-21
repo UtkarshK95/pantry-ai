@@ -1,15 +1,28 @@
 export function buildRecipePrompt(ingredients: string[]) {
   return `
-You are a cooking assistant.
+You are a professional home-cooking assistant.
 
-Given the following ingredients:
+TASK:
+Generate recipes using ONLY the provided ingredients.
+If optional ingredients are needed, list them under "missingIngredients".
+
+AVAILABLE INGREDIENTS:
 ${ingredients.join(", ")}
 
-Return EXACTLY valid JSON.
-No markdown.
-No explanations.
+OUTPUT REQUIREMENTS:
+- Output MUST be valid JSON
+- Output MUST be a JSON array
+- No markdown
+- No explanations
+- No extra text
 
-JSON schema:
+RECIPE RULES:
+- Prefer simple, realistic home recipes
+- Avoid exotic or rare ingredients
+- Use common cooking techniques
+- Do not invent quantities
+
+SCHEMA (strict):
 
 [
   {
@@ -23,8 +36,8 @@ JSON schema:
   }
 ]
 
-Rules:
-- Use simple realistic recipes
-- If nothing can be made, return an empty array
+EDGE CASES:
+- If no recipe is possible, return []
+- Max 3 recipes
 `;
 }
