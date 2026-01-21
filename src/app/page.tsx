@@ -8,16 +8,31 @@ import RecipeCard from "@/components/RecipeCard";
 export default function Home() {
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const generateRecipes = async () => {
-    const res = await fetch("/api/recipes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ingredients }),
-    });
+    setLoading(true);
+    setError(null);
 
-    const data = await res.json();
-    setRecipes(data);
+    try {
+      const res = await fetch("/api/recipes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ingredients }),
+      });
+
+      if (!res.ok) {
+        throw new Error("API failed");
+      }
+
+      const data = await res.json();
+      setRecipes(data);
+    } catch {
+      setError("Failed to generate recipes. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -29,11 +44,12 @@ export default function Home() {
 
       <button
         onClick={generateRecipes}
-        style={{ marginTop: 16 }}
-        disabled={ingredients.length === 0}
+        disabled={ingredients.length === 0 || loading}
       >
-        Generate Recipes
+        {loading ? "Generating..." : "Generate Recipes"}
       </button>
+
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
       {recipes.length > 0 && (
         <section style={{ marginTop: 24 }}>

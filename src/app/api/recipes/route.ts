@@ -1,21 +1,24 @@
+import { generateText } from "@/lib/gemini";
+import { buildRecipePrompt } from "@/lib/recipePrompt";
 import { Recipe } from "@/types/recipe";
+import { parseRecipes } from "@/lib/recipeParser";
 
 export async function POST(req: Request) {
-  const { ingredients } = await req.json();
+  try {
+    const { ingredients } = await req.json();
 
-  const recipe: Recipe = {
-    id: "1",
-    name: "Simple Omelette",
-    ingredientsUsed: ingredients.map((i: string) => ({ name: i })),
-    missingIngredients: [],
-    steps: [
-      "Crack the eggs into a bowl",
-      "Whisk well",
-      "Cook on a pan until done",
-    ],
-    cookingTimeMinutes: 10,
-    caloriesEstimate: 250,
-  };
+    const prompt = buildRecipePrompt(ingredients);
+    const text = await generateText(prompt);
 
-  return Response.json([recipe]);
+    const recipes = parseRecipes(text);
+
+    return Response.json(recipes);
+  } catch (error) {
+    console.error("Recipe generation failed:", error);
+
+    return new Response(
+      JSON.stringify({ error: "Failed to generate recipes" }),
+      { status: 500 }
+    );
+  }
 }
