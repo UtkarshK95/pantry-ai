@@ -26,22 +26,25 @@ export default function IngredientInput({ onChange }: Props) {
   };
 
   return (
-    <div style={{ maxWidth: 400 }}>
-      <h2>Add Ingredients</h2>
+    <div className="space-y-3">
+      <h2 className="font-semibold text-gray-800">Ingredients</h2>
 
       <input
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="e.g. eggs"
-        style={{ padding: 8, width: "100%" }}
+        className="w-full rounded border p-2"
       />
 
-      <button onClick={addIngredient} style={{ marginTop: 8 }}>
+      <button
+        onClick={addIngredient}
+        className="rounded bg-gray-800 px-3 py-1 text-white"
+      >
         Add
       </button>
 
-      <ul style={{ marginTop: 16 }}>
+      <ul className="list-disc pl-5 text-sm text-gray-700">
         {ingredients.map((item, index) => (
           <li key={index}>{item}</li>
         ))}

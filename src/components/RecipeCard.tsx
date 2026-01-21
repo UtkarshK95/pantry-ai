@@ -6,15 +6,14 @@ type Props = {
 
 export default function RecipeCard({ recipe }: Props) {
   return (
-    <div style={{ border: "1px solid #ddd", padding: 16 }}>
-      <h3>{recipe.name}</h3>
+    <div className="rounded border bg-white p-4 shadow-sm text-gray-900">
+      <h3 className="text-lg font-semibold">{recipe.name}</h3>
 
-      <p>
+      <p className="text-sm text-gray-500">
         ⏱ {recipe.cookingTimeMinutes} mins · 🔥 {recipe.caloriesEstimate} cal
       </p>
 
-      <strong>Steps</strong>
-      <ol>
+      <ol className="mt-2 list-decimal pl-5 text-sm text-gray-800">
         {recipe.steps.map((step, idx) => (
           <li key={idx}>{step}</li>
         ))}

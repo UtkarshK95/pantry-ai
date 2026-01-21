@@ -36,30 +36,32 @@ export default function Home() {
   };
 
   return (
-    <main style={{ padding: 24 }}>
-      <h1>Pantry AI</h1>
-      <p>Find recipes using ingredients you already have.</p>
+    <main className="min-h-screen bg-gray-50 p-6 text-gray-900">
+      <div className="mx-auto max-w-2xl space-y-6">
+        <h1 className="text-3xl font-bold text-gray-900">Pantry AI</h1>
 
-      <IngredientInput onChange={setIngredients} />
+        <p className="text-gray-600">
+          Find recipes using ingredients you already have.
+        </p>
 
-      <button
-        onClick={generateRecipes}
-        disabled={ingredients.length === 0 || loading}
-      >
-        {loading ? "Generating..." : "Generate Recipes"}
-      </button>
+        <IngredientInput onChange={setIngredients} />
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        <button
+          onClick={generateRecipes}
+          disabled={ingredients.length === 0 || loading}
+          className="rounded bg-black px-4 py-2 text-white disabled:opacity-50"
+        >
+          {loading ? "Generating..." : "Generate Recipes"}
+        </button>
 
-      {recipes.length > 0 && (
-        <section style={{ marginTop: 24 }}>
-          <h2>Recipes</h2>
+        {error && <p className="text-red-500">{error}</p>}
 
+        <section className="space-y-4">
           {recipes.map((recipe) => (
             <RecipeCard key={recipe.id} recipe={recipe} />
           ))}
         </section>
-      )}
+      </div>
     </main>
   );
 }
